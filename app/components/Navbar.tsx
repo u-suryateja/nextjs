@@ -5,7 +5,7 @@ import { useState } from "react"
 import { menuItems } from "@/menuItems"
 
 export default function Navbar() {
-    const [expand, setExpand] = useState(false)
+    const [expand, setExpand] = useState(true)
     const router = useRouter()
     return (
         <div className={`flex  flex-col transition-all duration-300  h-screen border-r`} style={{ width: expand ? "var(--sidebar-width-expanded)" : "var(--sidebar-width-collapsed)", background: "var(--sidebar-bg)", borderColor: "var(--sidebar-border)"}}>
