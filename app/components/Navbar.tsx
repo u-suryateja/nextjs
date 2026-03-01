@@ -49,7 +49,7 @@ export default function Navbar() {
                     <div className={`material-symbols-outlined  cursor-pointer ml-1 ${!expand && "col-span-4"} transition-all duration-300`} style={{ fontSize: expand ? "30px" : "30px" }} onClick={() => setExpand(!expand)} >
                         left_panel_open
                     </div>
-                    {expand && <div className="col-span-3 transition-all duration-300">colopase</div>}
+                    {expand && <div className="col-span-3 transition-all duration-300">collapse</div>}
 
                 </div>
 
