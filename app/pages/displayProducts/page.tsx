@@ -2,8 +2,15 @@
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
+type Product = {
+  id: number
+  title: string
+  thumbnail: string
+  tags: string[]
+}
+
 export default function displayProducts() {
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState<Product[]>([])
     const [highlight, setHighlight] = useState("low")
     const [loading,setLoading]=useState(false)
 
@@ -14,7 +21,7 @@ export default function displayProducts() {
             try {
                 setLoading(true)
                 const data = await fetch("https://dummyjson.com/products")
-                const res = await data.json()
+                const res: { products: Product[] } = await data.json()
                 console.log(res)
                 setProducts(res.products)
             } catch (error) {
