@@ -35,10 +35,10 @@ export default function RootLayout({
     </head>
       
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex`} 
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex h-screen overflow-hidden`} 
       >
         <Navbar />
-        <div className="flex-1">
+        <div className="flex-1 overflow-y-auto">
         {children}
         </div>
       </body>
