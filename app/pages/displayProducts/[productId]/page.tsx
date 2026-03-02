@@ -2,10 +2,17 @@
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
+type Product = {
+  title: string
+  description: string
+  price: number
+  thumbnail: string
+}
+
 export default function GetProductId() {
   const { productId } = useParams();
 
-  const [productById, setProductById] = useState(null);
+   const [productById, setProductById] = useState<Product | null>(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -17,7 +24,7 @@ export default function GetProductId() {
         const response = await fetch(
           `https://dummyjson.com/products/${productId}`
         );
-        const data = await response.json();
+        const data: Product = await response.json();
         setProductById(data);
       } catch (error) {
         console.log("error while getting data", error);
