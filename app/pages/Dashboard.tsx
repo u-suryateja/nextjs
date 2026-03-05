@@ -1,6 +1,7 @@
 "use client"
 import { useRouter } from "next/navigation"
-import { ClassComponent, FuntionalCompnent } from "../components/ClassCompnent"
+import { ClassComponent, FunctionalComponent } from "../components/ClassCompnent"
+import { LifeCycleComponents } from "../components/LifeCycleComponents"
 export default function Dashboard(){
     const router=useRouter()
     return(
@@ -8,11 +9,12 @@ export default function Dashboard(){
            
             {/* <button onClick={()=>{router.push("/pages/displayProducts")}} className=" border-2 border-black bg-black text-white p-2 rounded-xl cursor-pointer">Products</button> */}
             <div className="flex justify-center items-center h-screen">
-                <ClassComponent />
+                {/* <ClassComponent /> */}
+                <LifeCycleComponents />
             </div>
-            <div className="flex justify-center items-center h-screen">
-                <FuntionalCompnent />
-            </div>
+            {/* <div className="flex justify-center items-center h-screen">
+                <FunctionalComponent />
+            </div> */}
         </div>
     )
 }
