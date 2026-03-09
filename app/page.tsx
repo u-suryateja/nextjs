@@ -1,23 +1,15 @@
 "use client"
-import { createContext, useState } from "react"
-import Demourl from "./practice/page";
-// import Dashboard from "./pages/Dashboard";
+import { createContext } from "react";
+import DisplayProducts from "./displayProducts/page";
 
-export const User =createContext("")
+const User=createContext("suryateja")
+
 export default function Home() {
-  const [open, setOpen] = useState(false)
-   const[names,setNames]=useState(true)
-  const name=`${names?"ram":"sree"}`
-  const age=23
- 
-  const handelClick=()=>{
-    setNames(!names)
-  }
+  const name="Teja"
   return (
-    <User.Provider value={{name,age}}>
-    <div className="flex justify-center items-center h-screen">
-      {/* <Demourl /> */}
-      <button onClick={handelClick}>Click</button>
+    <User.Provider value={name}>
+    <div>
+      <DisplayProducts />
     </div>
     </User.Provider>
   );

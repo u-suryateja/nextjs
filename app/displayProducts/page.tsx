@@ -1,6 +1,7 @@
 "use client"
+import Footer from "@/app/components/Footer"
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 type Product = {
   id: number
@@ -9,10 +10,12 @@ type Product = {
   tags: string[]
 }
 
-export default function displayProducts() {
+export default function DisplayProducts() {
     const [products, setProducts] = useState<Product[]>([])
     const [highlight, setHighlight] = useState("low")
     const [loading,setLoading]=useState(false)
+    const [searchIn,setSearchIn]=useState("")
+    const searchButton = useRef(false)
 
     const router=useRouter();
 
@@ -33,6 +36,23 @@ export default function displayProducts() {
         fetchProduts();
     }, [])
 
+    const handelSearch=async()=>{
+        if(searchButton.current) return
+        searchButton.current=true
+        try{
+            setLoading(true)
+            const getSearchData=await fetch(`https://dummyjson.com/products/search?q=${searchIn}`)
+            const res=await getSearchData.json()
+            setProducts(res.products)
+        }catch(err){
+            console.log("error while featching",err)
+        }finally{
+            searchButton.current=false
+            setLoading(false)
+        }
+
+    }
+
     return (
 
         <div>{loading?(<div className="flex justify-center items-center h-screen">
@@ -41,7 +61,14 @@ export default function displayProducts() {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  p-4 max-w-[1250px] mx-auto">
                 <div className="col-span-4">
                     <div className="flex flex-col">
+                        <div className="flex justify-between">
                         <h1 className="text-xl text-600 font-semibold">Products</h1>
+                        <button className="bg-black border rounded-[5px] w-[150px] h-[35px] cursor-pointer text-white" onClick={()=>router.push("/Todo")}>Plan Purchase</button>
+                        </div>
+                        <div className="flex justify-center">
+                            <input className="h-[35px] border-2 border-black p-1 rounded-[5px]" type="text" placeholder="Search here..." onChange={(e)=>setSearchIn(e.target.value)} value={searchIn}/>
+                            <button className="bg-black border rounded-[5px] w-[100px] h-[35px] cursor-pointer text-white" onClick={handelSearch}>Search</button>
+                        </div>
                         <div className="flex gap-4 mb-3.5">
                             <p>Sort By :</p>
                             <div className={`${highlight==="low" ? "border-b-2 broder-blue":"border-transparent"}`}>
@@ -72,6 +99,7 @@ export default function displayProducts() {
                 ))}
             </div>
             </div>)}
+            <Footer />
         </div>
     )
 }
