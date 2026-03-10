@@ -96,7 +96,7 @@ export default function Todo() {
                             <p>No Todo are created yet...!</p>
                             </div>}</div>
                         <div className="flex justify-between border-1 border-black ">
-                            <p className="p-2 truncate">{data.todo}</p>
+                            <p className="p-2 break-words min-w-0 flex-1">{data.todo}</p>
                             <div className="flex">
                                 <button className="material-symbols-outlined border-l-1 broder-black p-2 cursor-pointer" onClick={() => handelDelete(data.id)}>Delete</button>
                                 <button className="material-symbols-outlined border-l-1 broder-black p-2 cursor-pointer" onClick={() => handelEdit(data.id)}>edit</button>
