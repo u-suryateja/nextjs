@@ -1,6 +1,7 @@
 "use client"
 import { createContext } from "react";
 import DisplayProducts from "./displayProducts/page";
+import Todo from "./Todo/page";
 
 const User=createContext("suryateja")
 
@@ -9,7 +10,8 @@ export default function Home() {
   return (
     <User.Provider value={name}>
     <div>
-      <DisplayProducts />
+      {/* <DisplayProducts /> */}
+      <Todo />
     </div>
     </User.Provider>
   );
