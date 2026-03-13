@@ -2,16 +2,27 @@
 import { createContext } from "react";
 import DisplayProducts from "./displayProducts/page";
 import Todo from "./Todo/page";
+import Input from "./components/Input";
+import Button from "./components/Button";
+import Form from "./components/Form";
+import Promises from "./components/Promises";
 
 const User=createContext("suryateja")
 
 export default function Home() {
+
+
+  const handelSubmit=()=>{
+    confirm("this suryateja")
+  }
   const name="Teja"
   return (
     <User.Provider value={name}>
-    <div>
+    <div className="flex justify-center items-center h-screen bg-white">
       {/* <DisplayProducts /> */}
-      <Todo />
+      {/* <Todo /> */}
+      {/* <Form /> */}
+      <Promises />
     </div>
     </User.Provider>
   );

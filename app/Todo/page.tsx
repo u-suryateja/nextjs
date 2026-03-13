@@ -6,7 +6,6 @@ type Todo = {
     id: number
     status: boolean
 }
-
 export default function Todo() {
     const [inputTodo, setInputTodo] = useState("")
     const [storage, setStorage] = useState<Todo[]>([])
@@ -16,21 +15,22 @@ export default function Todo() {
     const [isLoaded, setIsLoaded] = useState(false)
     const [time,setTime] = useState("")
 
-    useEffect(() => {
-        const saved = localStorage.getItem("todos")
-        if (saved) setStorage(JSON.parse(saved))
-        setIsLoaded(true) 
-    }, [])
-
     useEffect(()=>{
         setTime(new Date().toString())
-
         const interval = setInterval(()=>{
             setTime(new Date().toString())
         },1000)
 
         return ()=> clearInterval(interval)
     },[])
+
+    useEffect(() => {
+        const saved = localStorage.getItem("todos")
+        if (saved) setStorage(JSON.parse(saved))
+        setIsLoaded(true) 
+    }, [])
+
+    
     useEffect(() => {
         if (!isLoaded) return  
         localStorage.setItem("todos", JSON.stringify(storage))
@@ -47,7 +47,6 @@ export default function Todo() {
             setUpdates(false)
             return
         }
-
         setStorage([...storage, { todo: trimSpaces, id: Date.now(), status: false }])
         setInputTodo("")
     }
