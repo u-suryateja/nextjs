@@ -9,10 +9,14 @@ export default  function Promises() {
     const[product,setProduct]=useState(0)
     const[comments,setComments]=useState(0)
 
+    //promise
     useEffect(()=>{
-        fetch("https://jsonplaceholder.typicode.com/posts").then(res=>res.json()).then(data=>data.length).then(num=>setProduct(num))
-        .catch(err=>console.log(err)).finally(()=>console.log("this final"))
+        fetch("https://jsonplaceholder.typicode.com/posts")
+        .then(res=>res.json()).then(data=>data.length)
+        .then(num=>setProduct(num)).catch(err=>console.log(err))
+        .finally(()=>console.log("this final"))
     },[])
+    //Async/Await
     useEffect(()=>{
         const responce=async()=>{
             try{
