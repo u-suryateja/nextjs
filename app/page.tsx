@@ -6,6 +6,8 @@ import Input from "./components/Input";
 import Button from "./components/Button";
 import Form from "./components/Form";
 import Promises from "./components/Promises";
+import Callback from "./components/Callback";
+import Stopwatch from "./components/Stopwatch";
 
 const User=createContext("suryateja")
 
@@ -22,7 +24,9 @@ export default function Home() {
       {/* <DisplayProducts /> */}
       {/* <Todo /> */}
       {/* <Form /> */}
-      <Promises />
+      {/* <Promises /> */}
+      {/* <Callback /> */}
+      <Stopwatch />
     </div>
     </User.Provider>
   );
